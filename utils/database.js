@@ -11,9 +11,9 @@ export const connectToDB = async () => {
     }
 
     try {
-        await mongoose.createConnection(process.env.MONGODB_URI, {
+        await mongoose.connect(process.env.MONGODB_URI || 'fallback-uri', {
             dbName: "share_prompt",
-        })
+        });
         isConnected = true;
         console.log('MONGODB CONNECTED')
     } catch (error) {
